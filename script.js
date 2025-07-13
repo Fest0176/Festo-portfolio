@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = document.getElementById('message').value;
         
         // Open default email client with pre-filled data
-        const mailtoLink = `mailto:security@cyberengineer.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        const mailtoLink = `mailto:ndunguruf2001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
         window.location.href = mailtoLink;
         
         // Reset form
