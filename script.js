@@ -1,40 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Matrix rain background
-    function createMatrixRain() {
-        const matrixRain = document.querySelector('.matrix-rain');
-        if (!matrixRain) return;
-        
-        const characters = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
-        const columns = Math.floor(window.innerWidth / 20);
-        
-        for (let i = 0; i < columns; i++) {
-            const column = document.createElement('div');
-            column.className = 'matrix-column';
-            
-            const charsCount = Math.floor(Math.random() * 20) + 10;
-            for (let j = 0; j < charsCount; j++) {
-                const char = document.createElement('span');
-                char.className = 'matrix-character';
-                char.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-                char.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                char.style.animationDelay = `${Math.random() * 5}s`;
-                column.appendChild(char);
-            }
-            
-            matrixRain.appendChild(column);
-        }
-    }
-    
-    createMatrixRain();
-    
-    window.addEventListener('resize', function() {
-        const matrixRain = document.querySelector('.matrix-rain');
-        if (matrixRain) {
-            matrixRain.innerHTML = '';
-            createMatrixRain();
-        }
-    });
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
@@ -49,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
+            // Close mobile menu if open
             mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
             
@@ -60,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
             
+            // Update active link
             document.querySelectorAll('.nav-link').forEach(navLink => {
                 navLink.classList.remove('active');
             });
@@ -86,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Show/hide back to top button
         const backToTop = document.querySelector('.back-to-top');
         if (scrollPosition > 300) {
             backToTop.classList.add('active');
@@ -128,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', animateSkillBars);
-    animateSkillBars();
+    animateSkillBars(); // Run once on page load
     
     // Project Card Animation
     const projectCards = document.querySelectorAll('.project-card');
@@ -149,15 +116,20 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Get form values
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
         
+        // Open default email client with pre-filled data
         const mailtoLink = `mailto:ndunguruf2001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
         window.location.href = mailtoLink;
         
+        // Reset form
         contactForm.reset();
+        
+        // Show success message (you could enhance this with a proper notification)
         alert('Your email client will open with the message pre-filled. Please send it to contact me.');
     });
     
@@ -177,7 +149,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Initialize animations
+    // Tooltip for Tool Items
+    const toolItems = document.querySelectorAll('.tool-item');
+    
+    toolItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const toolName = this.getAttribute('data-tool');
+            // You could enhance this with a proper tooltip display
+        });
+    });
+    
+    // Initialize animations on page load
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 500);
